@@ -1,0 +1,134 @@
+<div class="my-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-9">
+                <h4>{{api}}/mock/{{endpoint.url}}</h4>
+              </div>
+              <div class="col-md-3 text-right">
+                  <button class="btn btn-primary" (click)="editData(true)" *ngIf="!edit">
+                    <i class="fa d-inline fa-lg fa-edit"></i> Editar
+                  </button>
+              </div>
+            </div>
+            <div class="row" *ngIf="!edit">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <div>Request Type</div>
+                  <span>{{endpoint.requestType}}</span>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <div>Delay (ms)</div>
+                  <span>{{endpoint.delay}}</span>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <div>Online</div>
+                  <span>{{endpoint.status}}</span>
+                </div>
+              </div>
+            </div>
+            <form [formGroup]="formEndpoint" (ngSubmit)="onSubmit()" *ngIf="edit">
+              <div class="form-group">
+                <label>End Point</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">{{api}}/mock/</div>
+                  </div>
+                  <input class="form-control" type="text" formControlName="url" (input)="endpoint.url">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>Request Type</label>
+                    <select class="form-control" formControlName="requestType" (input)="endpoint.requestType">
+                      <option>GET</option>
+                      <option>POST</option>
+                      <option>PUT</option>
+                      <option>DELETE</option>
+                    </select>
+                    <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>Delay (ms)</label>
+                    <input class="form-control" type="number" formControlName="delay" (input)="endpoint.delay">
+                    <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>Online</label>
+                    <select class="form-control" formControlName="online">
+                      <option>On</option>
+                      <option>Off</option>
+                    </select>
+                    <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 text-right d-inline">
+                  <button class="btn btn-danger mx-2" (click)="cancelEdit()" *ngIf="endpoint.id !== undefined"><i class="fa d-inline fa-lg fa-remove"></i> Cancelar edição</button>
+                  <button class="btn btn-primary" type="submit" [disabled]="this.formEndpoint.invalid"><i class="fa d-inline fa-lg fa-save"></i> Salvar Alterações</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="my-5" *ngIf="endpoint.id !== undefined">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-9">
+                <h4>Payloads</h4>
+              </div>
+              <div class="col-md-3 text-right">
+                <button class="btn btn-primary" [routerLink]="['/endpoint', endpoint.id, 'payload']">
+                  <i class="fa d-inline fa-lg fa-plus"></i> Adicionar
+                </button>
+              </div>
+            </div>
+            <table class="table table-responsive my-3" *ngIf="endpoint.payloads?.length > 0">
+              <thead>
+                <tr>
+                  <th>Params</th>
+                  <th>Request</th>
+                  <th>Response</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let payload of endpoint.payloads">
+                  <td class="text-wrap">{{payload.params}}</td>
+                  <td class="text-wrap">{{payload.request}}</td>
+                  <td class="text-wrap">{{payload.response}}</td>
+                  <td class="text-center">
+                    <button class="btn btn-link" (click)="deletePayload(payload.id)">
+                      <i class="fa fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

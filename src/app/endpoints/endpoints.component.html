@@ -1,0 +1,57 @@
+<div class="my-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-9">
+                <h4>End Points</h4>
+              </div>
+              <div class="col-md-3 text-right">
+                <a class="btn btn-primary" [routerLink]="['/endpoint']">
+                  <i class="fa d-inline fa-lg fa-plus"></i> Adicionar</a>
+              </div>
+            </div>
+            <!--
+            <form class="form-inline my-3" *ngIf="endpoints.length > 0">
+              <div class="input-group w-100">
+                <input type="email" class="form-control " placeholder="Procurar End Point">
+                <div class="input-group-append">
+                  <button class="btn btn-primary" type="button">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+            -->
+            <table class="table my-3" *ngIf="endpoints.length > 0">
+              <thead>
+                <tr>
+                  <th>End Point</th>
+                  <th>Request Type</th>
+                  <th>Delay</th>
+                  <th>Online</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let endpoint of endpoints">
+                  <td><a [routerLink]="['/endpoint', endpoint.id]">{{endpoint.url}}</a></td>
+                  <td>POST</td>
+                  <td class="text-left"><span *ngIf="endpoint.delay !== undefined">{{endpoint.delay}}ms</span></td>
+                  <td class="text-left">{{checkOnline(endpoint)}}</td>
+                  <td class="text-center">
+                    <button class="btn btn-link" (click)="deleteEndpoint(endpoint)">
+                      <i class="fa fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
