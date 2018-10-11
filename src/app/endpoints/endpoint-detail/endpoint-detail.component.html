@@ -9,12 +9,18 @@
                 <h4>{{api}}/mock/{{endpoint.url}}</h4>
               </div>
               <div class="col-md-3 text-right">
-                  <button class="btn btn-primary" (click)="editEndpoint()" *ngIf="!disabledEdit">
-                    <i class="fa d-inline fa-lg fa-edit"></i> Editar
-                  </button>
+                <button class="btn btn-primary" (click)="editEndpoint()" *ngIf="!disabledEdit">
+                  <i class="fa d-inline fa-lg fa-edit"></i> Editar
+                </button>
               </div>
             </div>
-            <div class="row" *ngIf="!edit">
+            <div class="row" *ngIf="!disabledEdit">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <div>Descrição</div>
+                  <span>{{endpoint.description}}</span>
+                </div>
+              </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <div>Request Type</div>
@@ -42,9 +48,15 @@
                     <div class="input-group-text">{{api}}/mock/</div>
                   </div>
                   <input class="form-control" type="text" formControlName="url" (keydown)="validUrl($event)">
-                  
                 </div>
-                <small class="form-text text-muted">Use <span class="text-bold">&#123;</span> e <span class="text-bold">&#125;</span> para representar parametros a serem passados na URL, por exemplo <span class="text-bold">contrato/&#123;cpf&#125;/&#123;codigo&#125;</span>.</small>
+                <small class="form-text text-muted">Use <span class="text-bold">&#123;</span> e <span class="text-bold">&#125;</span>
+                  para representar parametros a serem passados na URL, por exemplo <span class="text-bold">contrato/&#123;cpf&#125;/&#123;codigo&#125;</span>.</small>
+              </div>
+              <div class="form-group">
+                <label>Descrição</label>
+                <textarea class="form-control textarea" formControlName="description"></textarea>
+                <small class="form-text text-muted">Descrição do Endpoint, e inforamar onde será usado através de uma
+                  lista de Projeto, Arquivo e Linha.</small>
               </div>
               <div class="row">
                 <div class="col-md-4">
@@ -76,8 +88,10 @@
               </div>
               <div class="row">
                 <div class="col-md-12 text-right d-inline">
-                  <button class="btn btn-danger mx-2" (click)="cancelEdit()" *ngIf="endpoint.id !== undefined"><i class="fa d-inline fa-lg fa-remove"></i> Cancelar edição</button>
-                  <button class="btn btn-primary" type="submit" [disabled]="this.formEndpoint.invalid"><i class="fa d-inline fa-lg fa-save"></i> Salvar Alterações</button>
+                  <button class="btn btn-danger mx-2" (click)="cancelEdit()" *ngIf="endpoint.id"><i class="fa d-inline fa-lg fa-remove"></i>
+                    Cancelar edição</button>
+                  <button class="btn btn-primary" type="submit" [disabled]="this.formEndpoint.invalid"><i class="fa d-inline fa-lg fa-save"></i>
+                    Salvar Alterações</button>
                 </div>
               </div>
             </form>
@@ -118,7 +132,7 @@
                   <td class="text-wrap">{{payload.request}}</td>
                   <td class="text-wrap">{{payload.response}}</td>
                   <td class="text-center">
-                    <button class="btn btn-link" (click)="deletePayload(payload.id)">
+                    <button class="btn btn-link" (click)="deletePayload(payload)">
                       <i class="fa fa-trash"></i>
                     </button>
                   </td>

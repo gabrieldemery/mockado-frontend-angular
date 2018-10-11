@@ -3,7 +3,8 @@ import { Payload } from "./payload.model";
 export class Endpoint {
     id?: string = '';
     url: string = '';
-    requestType: string
+    description: string = ''
+    requestType: string = 'GET'
     delay?: number = 0;
     online: boolean = true;
     payloads?: Payload[]

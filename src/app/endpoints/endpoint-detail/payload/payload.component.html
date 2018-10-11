@@ -11,7 +11,7 @@
             </div>
             <form [formGroup]="formPayload" (ngSubmit)="onSubmit()">
               <div class="form-group">
-                <label>Parms</label>
+                <label>Params</label>
                 <textarea class="form-control textarea" formControlName="params" [disabled]="disabledParam"></textarea>
                 <small class="form-text text-muted">Os parametros são os mesmos que foram inseridos na URL do Endpoint. O formato é <span class="text-bold">JSON</span>.</small>
               </div>

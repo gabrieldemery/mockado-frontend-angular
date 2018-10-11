@@ -47,6 +47,7 @@ export class EndpointDetailComponent implements OnInit {
   ngOnInit() {
     this.formEndpoint = this.formBuilder.group({
       url: ['', [Validators.required, Validators.minLength(2)]],
+      description: ['', Validators.required],
       requestType: ['', Validators.required],
       delay: [0],
       online: ['', [Validators.required]]

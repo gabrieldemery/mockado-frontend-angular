@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md bg-primary navbar-dark">
   <div class="container">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" [routerLink]="['/']">
       <b>Mockado</b>
     </a>
     <button class="navbar-toggler navbar-toggler-right" type="button" *ngIf="isLoggedIn$ | async" data-toggle="collapse" data-target="#menubar">

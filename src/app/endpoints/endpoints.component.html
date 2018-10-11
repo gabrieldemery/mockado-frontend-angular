@@ -25,21 +25,24 @@
               </div>
             </form>
             -->
-            <table class="table my-3" *ngIf="endpoints.length > 0">
+            <table class="table table-responsive my-3" *ngIf="endpoints.length > 0">
               <thead>
                 <tr>
                   <th>End Point</th>
                   <th>Request Type</th>
-                  <th>Delay</th>
+                  <th>Delay (ms)</th>
                   <th>Online</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let endpoint of endpoints">
-                  <td><a [routerLink]="['/endpoint', endpoint.id]">{{endpoint.url}}</a></td>
+                  <td>
+                    <div><a [routerLink]="['/endpoint', endpoint.id]">{{api}}/mock/{{endpoint.url}}</a></div>
+                    <!-- <small class="text-muted">{{endpoint.description}}</small> -->
+                  </td>
                   <td>POST</td>
-                  <td class="text-left"><span *ngIf="endpoint.delay !== undefined">{{endpoint.delay}}ms</span></td>
+                  <td class="text-left"><span *ngIf="endpoint.delay !== undefined">{{endpoint.delay}}</span></td>
                   <td class="text-left">{{checkOnline(endpoint)}}</td>
                   <td class="text-center">
                     <button class="btn btn-link" (click)="deleteEndpoint(endpoint)">
