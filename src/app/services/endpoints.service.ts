@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import {Observable} from 'rxjs';
 // Constantes
 import { environment } from '../../environments/environment'
 
@@ -12,11 +12,11 @@ export class EndpointsService {
 
   constructor(private http: HttpClient) { }
 
-  getEndpoints() {
+  getEndpoints(): Observable<Endpoint[]>  {
     return this.http.get<Endpoint[]>(`${environment.api}/endpoints`);
   }
 
-  getEndpoint(id: string) {
+  getEndpoint(id: string): Observable<Endpoint> {
     return this.http.get<Endpoint>(`${environment.api}/endpoints/${id}`);
   }
 

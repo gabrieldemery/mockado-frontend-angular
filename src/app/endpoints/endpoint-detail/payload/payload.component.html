@@ -6,13 +6,13 @@
           <div class="card-body">
             <div class="row">
               <div class="col-md-12">
-                <h4>http://localhost:8190/api/mock{{endpoint.url}}</h4>
+                <h4>{{api}}/mock/{{endpoint.url}}</h4>
               </div>
             </div>
             <form [formGroup]="formPayload" (ngSubmit)="onSubmit()">
               <div class="form-group">
                 <label>Parms</label>
-                <textarea class="form-control" formControlName="params"></textarea>
+                <textarea class="form-control" formControlName="params" [disabled]="disabledParam"></textarea>
               </div>
               <div class="form-group">
                 <label>Request</label>

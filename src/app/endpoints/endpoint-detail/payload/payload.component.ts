@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+
+// Constantes
+import { environment } from '../../../../environments/environment'
 
 // Models
 import { Endpoint } from '../../../models/endpoint.model';
@@ -15,9 +19,12 @@ import { EndpointsService } from '../../../services/endpoints.service';
 })
 export class PayloadComponent implements OnInit {
 
-  endpoint: Endpoint
+  private regexBraces = /[^{\}]+(?=})/gm
 
-  formPayload: FormGroup
+  public api: string
+  public endpoint: Endpoint = new Endpoint()
+
+  public formPayload: FormGroup
 
   constructor(
     private router: Router,
@@ -25,44 +32,47 @@ export class PayloadComponent implements OnInit {
     private formBuilder: FormBuilder,
     private endpointsService: EndpointsService
   ) {
-    //this.emptyEndpoint()
-    
+    this.api = environment.api
+
     if(this.route.snapshot.paramMap.get('id'))
       this.endpointsService.getEndpoint( this.route.snapshot.paramMap.get('id') )
         .subscribe((endpoint: Endpoint) => {
-          if( endpoint !== undefined )
+          if(endpoint)
             this.endpoint = endpoint
-            console.log(endpoint)
+            this.checkParams()
         })
   }
 
   ngOnInit() {
     this.formPayload = this.formBuilder.group({
-      params: [''],
+      params: [{value: '', disabled: true}],
       request: ['', Validators.required],
       response: ['', [Validators.required]]
     });
   }
 
-  /* private emptyEndpoint(){
-    this.endpoint = {
-      url: 'Teste',
-      requestType: 'GET',
-      online: true
-    }
-  } */
+  checkParams(){
+    let count: number = 0
+    let params: Object = {}
+    this.endpoint.url.match(this.regexBraces).map( (result: string) => {
+      params[result] = ""
+      count++
+    })
+
+    this.formPayload.get('params').setValue(JSON.stringify(params, null, '\t'))
+
+    if(count > 0)
+      this.formPayload.get('params').enable()
+  }
   
   onSubmit() {
     let payload: Payload = { ... this.formPayload.value };
-
-    console.log("OnSubmit", payload)
     
     if( this.endpoint.payloads === undefined )
       this.endpoint.payloads = []
 
     this.endpoint.payloads.push(payload)
     this.endpointsService.putEndpoint(this.endpoint).subscribe( (res: any) => {
-      console.log(res)
       this.router.navigate(['/endpoint', this.endpoint.id]);
     }, (err: any) => {
       console.error(err)

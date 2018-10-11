@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {Observable} from 'rxjs';
 
 // Constantes
 import { environment } from '../../../environments/environment'
@@ -18,12 +19,12 @@ import { EndpointsService } from '../../services/endpoints.service';
 })
 export class EndpointDetailComponent implements OnInit {
 
-  public formEndpoint: FormGroup;
-
   public api: string
   public endpoint: Endpoint = new Endpoint()
 
-  public edit: boolean = false
+  public formEndpoint: FormGroup;
+  
+  public disabledEdit: boolean = false
 
   constructor(
     private route: ActivatedRoute,
@@ -36,11 +37,11 @@ export class EndpointDetailComponent implements OnInit {
       this.endpointsService.getEndpoint(this.route.snapshot.params.id)
         .subscribe((endpoint: Endpoint) => {
           if(endpoint)
-            this.endpoint = endpoint
-            this.formEndpoint.patchValue({...endpoint});
+            this.endpoint = {...this.endpoint, ...endpoint}
+          this.formEndpoint.patchValue({...endpoint});
         })
     else
-        this.edit = true
+        this.disabledEdit = true
   }
 
   ngOnInit() {
@@ -52,58 +53,46 @@ export class EndpointDetailComponent implements OnInit {
     })
 
     if (this.endpoint === undefined)
-      this.edit = true
-    
-    //this.loadData()
+      this.disabledEdit = true
   }
 
- /*  private emptyEndpoint(){
-    this.endpoint = {
-      url: '',
-      requestType: 'GET',
-      online: true,
-      delay: 0
-    }
-  } */
-
-  
-
-  /* loadData(){
-    for(var attr in this.endpoint){
-      if( attr == "online" )
-        this.formEndpoint.get(attr).setValue(this.checkOnline())
-      else
-        this.formEndpoint.get(attr).setValue(this.endpoint[attr])
-    }
-  } */
-
-  editData(edit: boolean) {
-    this.edit = edit;
+  editEndpoint(){
+    this.formEndpoint.patchValue({...this.endpoint});
+    this.disabledEdit = true
   }
 
   cancelEdit(){
-    this.edit = false
+    this.disabledEdit = false
     this.formEndpoint.reset()
+  }
+
+  validUrl(event: any){
+    if(event.keyCode == 193 && this.formEndpoint.value.url.length <= 1)
+      return false
   }
   
   onSubmit() {
-    this.endpoint = { ... this.formEndpoint.value };
+    this.endpoint = { ...this.formEndpoint.value, id: this.endpoint.id, payloads: this.endpoint.payloads};
 
-    console.log("OnSubmit", this.endpoint)
-
-    if(this.endpoint.id !== (undefined && NaN && null && "")){
-      this.endpointsService.putEndpoint(this.endpoint)
+    if(this.endpoint.id !== (undefined && null && "")){
+      this.endpointsService.putEndpoint(this.endpoint).subscribe( (res: any) => {
+        this.disabledEdit = false
+      }, (err: any) => {
+        console.error("Error", err)
+      })
     }else{
-      this.endpointsService.postEndpoint(this.endpoint)
-        .subscribe( (endpoint: Endpoint) => { this.endpoint = endpoint })
+      this.endpointsService.postEndpoint(this.endpoint).subscribe( (endpoint: Endpoint) => {
+        this.endpoint = endpoint
+        this.disabledEdit = false
+      }, (err: any) => {
+        console.error("Error", err)
+      })
     }
   }
   
   deletePayload(payload: Payload){
     this.endpoint.payloads.splice(this.endpoint.payloads.indexOf(payload), 1)
-    this.endpointsService.putEndpoint(this.endpoint).subscribe( (res: any) => {
-      console.log(res)
-    }, (err: any) => {
+    this.endpointsService.putEndpoint(this.endpoint).subscribe( (res: any) => {}, (err: any) => {
       console.error(err)
     })
   }

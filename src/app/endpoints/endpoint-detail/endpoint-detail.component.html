@@ -9,7 +9,7 @@
                 <h4>{{api}}/mock/{{endpoint.url}}</h4>
               </div>
               <div class="col-md-3 text-right">
-                  <button class="btn btn-primary" (click)="editData(true)" *ngIf="!edit">
+                  <button class="btn btn-primary" (click)="editEndpoint()" *ngIf="!disabledEdit">
                     <i class="fa d-inline fa-lg fa-edit"></i> Editar
                   </button>
               </div>
@@ -34,44 +34,42 @@
                 </div>
               </div>
             </div>
-            <form [formGroup]="formEndpoint" (ngSubmit)="onSubmit()" *ngIf="edit">
+            <form [formGroup]="formEndpoint" (ngSubmit)="onSubmit()" *ngIf="disabledEdit">
               <div class="form-group">
                 <label>End Point</label>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <div class="input-group-text">{{api}}/mock/</div>
                   </div>
-                  <input class="form-control" type="text" formControlName="url" (input)="endpoint.url">
+                  <input class="form-control" type="text" formControlName="url" (keydown)="validUrl($event)">
+                  <small class="form-text text-muted">Use &#123; e &#125; para representar parametros a serem passados na URL, por exemplo <span style="font-weight: bold">contrato/&#123;cpf&#125;/&#123;codigo&#125;</span>.</small>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-4">
                   <div class="form-group">
                     <label>Request Type</label>
-                    <select class="form-control" formControlName="requestType" (input)="endpoint.requestType">
+                    <select class="form-control" formControlName="requestType">
                       <option>GET</option>
                       <option>POST</option>
                       <option>PUT</option>
                       <option>DELETE</option>
                     </select>
-                    <small class="form-text text-muted">We'll never share your email with anyone else.</small>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label>Delay (ms)</label>
-                    <input class="form-control" type="number" formControlName="delay" (input)="endpoint.delay">
-                    <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    <input class="form-control" type="number" formControlName="delay">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label>Online</label>
                     <select class="form-control" formControlName="online">
-                      <option>On</option>
-                      <option>Off</option>
+                      <option value="true">On</option>
+                      <option value="false">Off</option>
                     </select>
-                    <small class="form-text text-muted">We'll never share your email with anyone else.</small>
                   </div>
                 </div>
               </div>
