@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 // Constantes
 import { environment } from '../../environments/environment'
@@ -8,7 +9,6 @@ import { Endpoint } from '../models/endpoint.model';
 
 // Services
 import { EndpointsService } from '../services/endpoints.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-endpoints',

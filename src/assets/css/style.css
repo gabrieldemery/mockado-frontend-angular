@@ -6435,3 +6435,10 @@
   .text-wrap {
     word-wrap: break-word; }
   
+  .text-bold{
+    font-weight: bold; }
+
+  .textarea {
+    height: 120px !important;
+    font-size: 80%; }
+  

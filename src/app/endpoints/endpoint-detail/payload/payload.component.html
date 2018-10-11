@@ -12,20 +12,23 @@
             <form [formGroup]="formPayload" (ngSubmit)="onSubmit()">
               <div class="form-group">
                 <label>Parms</label>
-                <textarea class="form-control" formControlName="params" [disabled]="disabledParam"></textarea>
+                <textarea class="form-control textarea" formControlName="params" [disabled]="disabledParam"></textarea>
+                <small class="form-text text-muted">Os parametros são os mesmos que foram inseridos na URL do Endpoint. O formato é <span class="text-bold">JSON</span>.</small>
               </div>
               <div class="form-group">
-                <label>Request</label>
-                <textarea class="form-control" formControlName="request"></textarea>
+                <label>Request Body</label>
+                <textarea class="form-control textarea" formControlName="request"></textarea>
+                <small class="form-text text-muted">Body do request pode ser em <span class="text-bold">JSON</span> ou <span class="text-bold">XML</span>.</small>
               </div>
               <div class="form-group">
-                <label>Response</label>
-                <textarea class="form-control" formControlName="response"></textarea>
+                <label>Response Body</label>
+                <textarea class="form-control textarea" formControlName="response"></textarea>
+                <small class="form-text text-muted">Body do response pode ser em <span class="text-bold">JSON</span> ou <span class="text-bold">XML</span>.</small>
               </div>
               <div class="row">
                 <div class="col-md-9"> </div>
                 <div class="col-md-3 text-right">
-                  <button type="submit" class="btn btn-primary">Adicionar</button>
+                  <button type="submit" class="btn btn-primary"><i class="fa d-inline fa-lg fa-plus"></i> Adicionar</button>
                 </div>
               </div>
             </form>

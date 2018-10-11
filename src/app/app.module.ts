@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 // Services
+import { AuthService } from './services/auth.service';
 import { EndpointsService } from './services/endpoints.service';
 
 // Components
@@ -31,6 +32,7 @@ import { PayloadComponent } from './endpoints/endpoint-detail/payload/payload.co
     ReactiveFormsModule
   ],
   providers: [
+    AuthService,
     EndpointsService
   ],
   bootstrap: [AppComponent]

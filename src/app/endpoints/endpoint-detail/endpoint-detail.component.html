@@ -37,19 +37,20 @@
             <form [formGroup]="formEndpoint" (ngSubmit)="onSubmit()" *ngIf="disabledEdit">
               <div class="form-group">
                 <label>End Point</label>
-                <div class="input-group">
+                <div class="input-group w-100">
                   <div class="input-group-prepend">
                     <div class="input-group-text">{{api}}/mock/</div>
                   </div>
                   <input class="form-control" type="text" formControlName="url" (keydown)="validUrl($event)">
-                  <small class="form-text text-muted">Use &#123; e &#125; para representar parametros a serem passados na URL, por exemplo <span style="font-weight: bold">contrato/&#123;cpf&#125;/&#123;codigo&#125;</span>.</small>
+                  
                 </div>
+                <small class="form-text text-muted">Use <span class="text-bold">&#123;</span> e <span class="text-bold">&#125;</span> para representar parametros a serem passados na URL, por exemplo <span class="text-bold">contrato/&#123;cpf&#125;/&#123;codigo&#125;</span>.</small>
               </div>
               <div class="row">
                 <div class="col-md-4">
                   <div class="form-group">
                     <label>Request Type</label>
-                    <select class="form-control" formControlName="requestType">
+                    <select class="form-control w-100" formControlName="requestType">
                       <option>GET</option>
                       <option>POST</option>
                       <option>PUT</option>
@@ -60,13 +61,13 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label>Delay (ms)</label>
-                    <input class="form-control" type="number" formControlName="delay">
+                    <input class="form-control w-100" type="number" formControlName="delay">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label>Online</label>
-                    <select class="form-control" formControlName="online">
+                    <select class="form-control w-100" formControlName="online">
                       <option value="true">On</option>
                       <option value="false">Off</option>
                     </select>
