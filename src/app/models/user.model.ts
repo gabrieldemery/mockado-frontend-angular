@@ -1,4 +1,4 @@
 export class User {
-    eid: string = ''
+    login: string = ''
     pass: string = ''
 }

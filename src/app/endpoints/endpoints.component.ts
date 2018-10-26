@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
 
 // Constantes
 import { environment } from '../../environments/environment'
 
 // Models
-import { Endpoint } from '../models/endpoint.model';
+import { Endpoint } from '../models/endpoint.model'
 
 // Services
-import { EndpointsService } from '../services/endpoints.service';
+import { EndpointsService } from '../services/endpoints.service'
 
 @Component({
   selector: 'app-endpoints',
@@ -32,7 +32,7 @@ export class EndpointsComponent implements OnInit {
         this.endpoints = endpoints
 
         if(this.endpoints.length <= 0)
-          this.router.navigate(['/endpoint']);
+          this.router.navigate(['/endpoint'])
       })
   }
 

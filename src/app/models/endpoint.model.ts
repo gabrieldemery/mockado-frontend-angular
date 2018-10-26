@@ -8,6 +8,6 @@ export class Endpoint {
     delay?: number = 0;
     online: boolean = true;
     payloads?: Payload[]
-    status: string = this.online? 'On' : 'Off'
+    status: string = this.online ? 'On' : 'Off'
 }
 

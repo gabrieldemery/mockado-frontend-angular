@@ -15,12 +15,6 @@
               </div>
             </div>
             <div class="row" *ngIf="!disabledEdit">
-              <div class="col-md-12">
-                <div class="form-group">
-                  <div>Descrição</div>
-                  <span>{{endpoint.description}}</span>
-                </div>
-              </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <div>Request Type</div>
@@ -39,6 +33,12 @@
                   <span>{{endpoint.status}}</span>
                 </div>
               </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <div>Descrição</div>
+                  <span>{{endpoint.description}}</span>
+                </div>
+              </div>
             </div>
             <form [formGroup]="formEndpoint" (ngSubmit)="onSubmit()" *ngIf="disabledEdit">
               <div class="form-group">
@@ -51,12 +51,6 @@
                 </div>
                 <small class="form-text text-muted">Use <span class="text-bold">&#123;</span> e <span class="text-bold">&#125;</span>
                   para representar parametros a serem passados na URL, por exemplo <span class="text-bold">contrato/&#123;cpf&#125;/&#123;codigo&#125;</span>.</small>
-              </div>
-              <div class="form-group">
-                <label>Descrição</label>
-                <textarea class="form-control textarea" formControlName="description"></textarea>
-                <small class="form-text text-muted">Descrição do Endpoint, e inforamar onde será usado através de uma
-                  lista de Projeto, Arquivo e Linha.</small>
               </div>
               <div class="row">
                 <div class="col-md-4">
@@ -85,6 +79,12 @@
                     </select>
                   </div>
                 </div>
+              </div>
+              <div class="form-group">
+                <label>Descrição</label>
+                <textarea class="form-control textarea" formControlName="description"></textarea>
+                <small class="form-text text-muted">Descrição do Endpoint, e inforamar onde será usado através de uma
+                  lista de Projeto, Arquivo e Linha.</small>
               </div>
               <div class="row">
                 <div class="col-md-12 text-right d-inline">

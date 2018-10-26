@@ -8,11 +8,11 @@
             <h4>Área Restrita</h4>
             <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
               <div class="form-group">
-                <label>EID</label>
-                <input class="form-control" type="text" formControlName="eid" placeholder="Informe seu EID">
+                <label>Login</label>
+                <input class="form-control" type="text" formControlName="login" placeholder="Informe seu Login">
               </div>
               <div class="form-group">
-                <label contenteditable="true">Senha</label>
+                <label>Senha</label>
                 <input class="form-control" type="password" formControlName="pass" placeholder="Informe sua Senha">
               </div>
               <div class="row pi-draggable" draggable="true">

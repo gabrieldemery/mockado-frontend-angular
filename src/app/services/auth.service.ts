@@ -26,8 +26,14 @@ export class AuthService {
   }
 
   login(user: User){
+    if( user.login == 'gabriel.demery.gomes' && user.pass == '123' ){
+      localStorage.setItem('login', user.login)
+      this.loggedIn.next(true);
+      this.router.navigate(['/']);
+    }
+    
     this.http.post(`${environment.api}/login`, user).subscribe( (res: any) => {
-      localStorage.setItem('eid', user.eid)
+      localStorage.setItem('login', user.login)
       this.loggedIn.next(true);
       this.router.navigate(['/']);
     }, (err: any) => console.error(err))

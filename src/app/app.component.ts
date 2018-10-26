@@ -11,7 +11,7 @@ import { AuthService } from './services/auth.service';
 export class AppComponent implements OnInit {
 
   isLoggedIn$: Observable<boolean>
-  eid: string
+  login: string
 
   constructor(
     private authService: AuthService
@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.isLoggedIn$ = this.authService.isLoggedIn
-    this.eid = localStorage.getItem('eid') || ''
+    this.login = localStorage.getItem('login') || ''
   }
 
   onLogout(){

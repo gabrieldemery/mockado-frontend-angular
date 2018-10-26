@@ -1,0 +1,84 @@
+{
+  "endpoints": [
+    {
+      "id": 2,
+      "url": "atx/consulta/{cpf}/{contrato}",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce turpis justo, lacinia sed nunc eu, rhoncus gravida ex. Pellentesque fermentum luctus tortor, non vulputate nunc auctor ac. Phasellus nec eros ullamcorper, accumsan diam non, condimentum est. Pellentesque et tellus venenatis, luctus arcu nec, aliquet sem. Maecenas gravida interdum sem, in cursus dui luctus tristique. Cras in tellus ut est dictum feugiat ac ut tortor. Morbi placerat diam augue, at posuere leo imperdiet et. Nunc quis libero vitae eros mollis rutrum.",
+      "requestType": "POST",
+      "delay": 389,
+      "online": true,
+      "status": "On",
+      "payloads": [
+        {
+          "id": "",
+          "params": "{\"cpf\":\"\",\"contrato\":\"\"}",
+          "request": "{\"id\":\"123\"}",
+          "response": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><itens/>"
+        }
+      ]
+    },
+    {
+      "url": "cetOrcamento",
+      "requestType": "GET",
+      "delay": 744,
+      "online": true,
+      "id": 3,
+      "payloads": [
+        {
+          "id": "",
+          "params": "",
+          "request": "123",
+          "response": "123546"
+        },
+        {
+          "id": "",
+          "params": "",
+          "request": "{\"username\":\"INTEGRA_CLIENTE\",\"password\":\"!QAZ2wsx\"}",
+          "response": "{\"access_token\":\"eyJlbmMiOiJBMTI4R0NNIiwiYWxnIjoiUlNBLU9BRVAtMjU2In0.j3t70ic1WABxhe3P-WV8nysF6OLFSEE4fBxI6NZw07-b1MR3PgBLyrfGkIRxelPxMLveK_Dc7V5tb2am7mwop1m9gz2m-sDucCGHIrRmGMzhwpKd71q9mMAO7T0hwsHUMmx-CaYu1firbgUxIjxqa6j8Sxzj_1KFzNCpFgMqKp1Cp3ZrC7OgzMGk_-5VRLsaGQqDcuMFv7Dq-Lc4QberElFYGZ0IIug_EBe50VBlLIKtFnC9n1VLBtu44fQrPCPhudOJ8TJm6FON5JLuG_tKHmHh-ZDSmsYPq_HZ0y3pPpZr8nEAYHurww1dbXc2P9WOnVKnN6VftqU_4bADqPNDlQ.ZvzKD826RmXuHmyO.tQIKJLZDmsLRnpiIiyKQ9wOvp4MO0bXgO7N1l632rJSpMyDTdxaiAcatThNRoSdw9IEQTLn6h4UCVmptPz87D0TTW-qEpFZhZriEm0EOc2Gaapem_otg8MDPGWWkpWZq6JV9GLMUXu4osEUquH5hckVjEvw3XgZ1FjNnrE0NcigUMenA6qJdmNOTSPsF6sTiC26xFbGPsLF8nQHheGBeHtliNec53jB7hciDwXtM38DCylS6VvSaCMEDpD3CnD4auOjBKIBR5qP1eGb0UlLeHNg-yfluXQzwFt0YPgBtOmuzeWPfQmCnC3-lJb-j1UdAJZDBPEah-Krd7uIb4slQPq_s2NPV_IfRC-xFfcWSg1QYh6wqf0OMxP3a5r90CbVjqsMh6yILrmhCegHCYojZAf9bmiEIVbT1FAH5rT679uMRRKdn4sdK3gfvFSfCrPKetvMtUHcwMpoRyJe88-MyEd_rwMBHZMmNWuzITeGF2V-vdGdjK1P0BhBiocbCuXQ1eVICvmiaHFtSEEigHWJnHcdKH4IzzjwilbS1ZIoEfFcl2SrYXVRkmGflEYkjmDGrob_vOAWpdcnohXYhn2BA1e-RPL5HL1S3pVPexsXyKaNK1DcYn_83trZnJG88R1Tm1t-oA2EUUc4.2kC5yST0jiu0VJirIrs00Q\",\"token_type\":\"bearer\",\"expires_in\":1539346609175}"
+        }
+      ]
+    },
+    {
+      "url": "contrato",
+      "requestType": "GET",
+      "delay": 100,
+      "online": "On",
+      "id": 4
+    },
+    {
+      "url": "adt/{cpf}",
+      "requestType": "POST",
+      "delay": 0,
+      "online": true,
+      "id": 15
+    }
+  ],
+  "logs": [
+    {
+      "datetime": "2018-09-22 11:12",
+      "login": "gabriel.demery.gomes",
+      "action": "delete",
+      "endpoint": "/adt",
+      "payload": true
+    },
+    {
+      "datetime": "2018-09-23 09:01",
+      "login": "gabriel.demery.gomes",
+      "action": "post",
+      "endpoint": "/adt",
+      "payload": true
+    },
+    {
+      "datetime": "2018-09-23 10:34",
+      "login": "gabriel.demery.gomes",
+      "action": "delete",
+      "endpoint": "/adt"
+    },
+    {
+      "datetime": "2018-09-23 14:55",
+      "login": "gabriel.demery.gomes",
+      "action": "post",
+      "endpoint": "/adt"
+    }
+  ]
+}

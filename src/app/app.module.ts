@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 // Services
 import { AuthService } from './services/auth.service';
 import { EndpointsService } from './services/endpoints.service';
+import { LogsService } from './services/logs.service';
 
 // Components
 import { AppComponent } from './app.component';
@@ -16,6 +17,7 @@ import { EndpointsComponent } from './endpoints/endpoints.component';
 import { EndpointDetailComponent } from './endpoints/endpoint-detail/endpoint-detail.component';
 import { LoginComponent } from './login/login.component';
 import { PayloadComponent } from './endpoints/endpoint-detail/payload/payload.component';
+import { LogsComponent } from './logs/logs.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { PayloadComponent } from './endpoints/endpoint-detail/payload/payload.co
     EndpointsComponent,
     EndpointDetailComponent,
     LoginComponent,
-    PayloadComponent
+    PayloadComponent,
+    LogsComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,8 @@ import { PayloadComponent } from './endpoints/endpoint-detail/payload/payload.co
   ],
   providers: [
     AuthService,
-    EndpointsService
+    EndpointsService,
+    LogsService
   ],
   bootstrap: [AppComponent]
 })

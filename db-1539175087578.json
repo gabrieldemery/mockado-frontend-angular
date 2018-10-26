@@ -1,0 +1,38 @@
+{
+  "endpoints": [
+    {
+      "id": 1,
+      "url": "/adt",
+      "requestType": "POST",
+      "online": true
+    },
+    {
+      "id": 2,
+      "url": "/atx/consulta",
+      "requestType": "POST",
+      "delay": 389,
+      "online": true
+    },
+    {
+      "id": 3,
+      "url": "/cetOrcamento",
+      "requestType": "GET",
+      "delay": 744,
+      "online": true
+    },
+    {
+      "url": "/contrato",
+      "requestType": "GET",
+      "delay": 100,
+      "online": "On",
+      "id": 4
+    },
+    {
+      "url": "/proposta",
+      "requestType": "GET",
+      "delay": 120,
+      "online": "On",
+      "id": 5
+    }
+  ]
+}

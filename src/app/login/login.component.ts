@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.formLogin = this.formBuilder.group({
-      eid: ['', Validators.required],
+      login: ['', Validators.required],
       pass: ['', Validators.required]
     });
   }

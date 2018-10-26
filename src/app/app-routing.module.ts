@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { EndpointsComponent } from './endpoints/endpoints.component';
 import { EndpointDetailComponent } from './endpoints/endpoint-detail/endpoint-detail.component';
 import { PayloadComponent } from './endpoints/endpoint-detail/payload/payload.component';
+import { LogsComponent } from './logs/logs.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'endpoint', component: EndpointDetailComponent, canActivate: [AuthGuard] },
   { path: 'endpoint/:id', component: EndpointDetailComponent, canActivate: [AuthGuard] },
   { path: 'endpoint/:id/payload', component: PayloadComponent, canActivate: [AuthGuard] },
+  { path: 'logs', component: LogsComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: '/endpoints', pathMatch: 'full' }
 ];
 
